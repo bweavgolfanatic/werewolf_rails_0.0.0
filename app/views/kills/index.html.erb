@@ -1,0 +1,31 @@
+<h1>Listing kills</h1>
+
+<table>
+  <tr>
+    <th>Killerid</th>
+    <th>Victimid</th>
+    <th>Timestamp</th>
+    <th>Lat</th>
+    <th>Lng</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @kills.each do |kill| %>
+  <tr>
+    <td><%= kill.killerID %></td>
+    <td><%= kill.victimID %></td>
+    <td><%= kill.timestamp %></td>
+    <td><%= kill.lat %></td>
+    <td><%= kill.lng %></td>
+    <td><%= link_to 'Show', kill %></td>
+    <td><%= link_to 'Edit', edit_kill_path(kill) %></td>
+    <td><%= link_to 'Destroy', kill, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Kill', new_kill_path %>

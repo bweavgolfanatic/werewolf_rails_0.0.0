@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Killerid:</b>
+  <%= @kill.killerID %>
+</p>
+
+<p>
+  <b>Victimid:</b>
+  <%= @kill.victimID %>
+</p>
+
+<p>
+  <b>Timestamp:</b>
+  <%= @kill.timestamp %>
+</p>
+
+<p>
+  <b>Lat:</b>
+  <%= @kill.lat %>
+</p>
+
+<p>
+  <b>Lng:</b>
+  <%= @kill.lng %>
+</p>
+
+
+<%= link_to 'Edit', edit_kill_path(@kill) %> |
+<%= link_to 'Back', kills_path %>

@@ -1,0 +1,37 @@
+<%= form_for(@kill) do |f| %>
+  <% if @kill.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@kill.errors.count, "error") %> prohibited this kill from being saved:</h2>
+
+      <ul>
+      <% @kill.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :killerID %><br />
+    <%= f.text_field :killerID %>
+  </div>
+  <div class="field">
+    <%= f.label :victimID %><br />
+    <%= f.text_field :victimID %>
+  </div>
+  <div class="field">
+    <%= f.label :timestamp %><br />
+    <%= f.text_field :timestamp %>
+  </div>
+  <div class="field">
+    <%= f.label :lat %><br />
+    <%= f.text_field :lat %>
+  </div>
+  <div class="field">
+    <%= f.label :lng %><br />
+    <%= f.text_field :lng %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
