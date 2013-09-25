@@ -1,4 +1,13 @@
 Werewolf::Application.routes.draw do
+  resources :players
+
+
+  resources :games
+
+
+  resources :users
+
+
   resources :kills
 
 

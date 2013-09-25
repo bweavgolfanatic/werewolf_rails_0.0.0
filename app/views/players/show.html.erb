@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Userid:</b>
+  <%= @player.userID %>
+</p>
+
+<p>
+  <b>Type:</b>
+  <%= @player.type %>
+</p>
+
+<p>
+  <b>Isdead:</b>
+  <%= @player.isDead %>
+</p>
+
+<p>
+  <b>Lat:</b>
+  <%= @player.lat %>
+</p>
+
+<p>
+  <b>Lng:</b>
+  <%= @player.lng %>
+</p>
+
+
+<%= link_to 'Edit', edit_player_path(@player) %> |
+<%= link_to 'Back', players_path %>

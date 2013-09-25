@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  userID: MyString
+  type: 
+  isDead: 1
+  lat: 1.5
+  lng: 1.5
+
+two:
+  userID: MyString
+  type: 
+  isDead: 1
+  lat: 1.5
+  lng: 1.5
