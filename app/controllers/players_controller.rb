@@ -80,4 +80,15 @@ class PlayersController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  # PUT /players/1
+  # PUT /players/1.json
+  def setDead
+    @player = Player.find(params[:id])
+    @player.isDead = 1
+    Kill.new(killerID: @player.userID)
+  end
+
+
+
 end

@@ -10,6 +10,8 @@ Werewolf::Application.routes.draw do
 
   resources :kills
 
+  match 'players/:id/kill' => 'werewolf/players#setDead'
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

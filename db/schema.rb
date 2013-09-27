@@ -11,7 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130923235204) do
+ActiveRecord::Schema.define(:version => 20130927025324) do
+
+  create_table "games", :force => true do |t|
+    t.string   "createdDate"
+    t.integer  "dayNightFreq"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.string   "day_state"
+  end
 
   create_table "kills", :force => true do |t|
     t.string   "killerID"
@@ -19,6 +27,23 @@ ActiveRecord::Schema.define(:version => 20130923235204) do
     t.string   "timestamp"
     t.float    "lat"
     t.float    "lng"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "players", :force => true do |t|
+    t.string   "userID"
+    t.string   "alignment"
+    t.integer  "isDead"
+    t.float    "lat"
+    t.float    "lng"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "users", :force => true do |t|
+    t.string   "username"
+    t.string   "hashedpwd"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
