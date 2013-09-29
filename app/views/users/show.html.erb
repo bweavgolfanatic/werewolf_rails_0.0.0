@@ -2,13 +2,10 @@
 
 <p>
   <b>Username:</b>
-  <%= @user.username %>
+  <%= @user.email %>
 </p>
 
-<p>
-  <b>Hashedpwd:</b>
-  <%= @user.hashedpwd %>
-</p>
+
 
 
 <%= link_to 'Edit', edit_user_path(@user) %> |

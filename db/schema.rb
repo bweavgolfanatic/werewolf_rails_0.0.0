@@ -11,14 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130927025324) do
+ActiveRecord::Schema.define(:version => 20130925054711) do
 
   create_table "games", :force => true do |t|
     t.string   "createdDate"
     t.integer  "dayNightFreq"
+    t.string   "day_state"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
-    t.string   "day_state"
   end
 
   create_table "kills", :force => true do |t|
@@ -32,9 +32,9 @@ ActiveRecord::Schema.define(:version => 20130927025324) do
   end
 
   create_table "players", :force => true do |t|
-    t.string   "userID"
+    t.integer  "user_id"
     t.string   "alignment"
-    t.integer  "isDead"
+    t.boolean  "isDead"
     t.float    "lat"
     t.float    "lng"
     t.datetime "created_at", :null => false
@@ -42,10 +42,13 @@ ActiveRecord::Schema.define(:version => 20130927025324) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "username"
-    t.string   "hashedpwd"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "email"
+    t.string   "password_hash"
+    t.string   "password_salt"
+    t.integer  "total_score"
+    t.integer  "high_score"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
 end

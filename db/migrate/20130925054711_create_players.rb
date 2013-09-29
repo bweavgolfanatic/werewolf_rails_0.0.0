@@ -1,9 +1,9 @@
 class CreatePlayers < ActiveRecord::Migration
   def change
     create_table :players do |t|
-      t.string :userID
-      t.string :type
-      t.integer :isDead
+      t.belongs_to :user
+      t.string :alignment
+      t.boolean :isDead
       t.float :lat
       t.float :lng
 

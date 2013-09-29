@@ -81,13 +81,11 @@ class PlayersController < ApplicationController
     end
   end
 
-  # PUT /players/1
-  # PUT /players/1.json
-  def setDead
-    @player = Player.find(params[:id])
-    @player.isDead = 1
-    Kill.new(killerID: @player.userID)
-  end
+
+
+
+
+
 
 
 
