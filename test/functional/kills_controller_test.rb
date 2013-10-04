@@ -18,7 +18,7 @@ class KillsControllerTest < ActionController::TestCase
 
   test "should create kill" do
     assert_difference('Kill.count') do
-      post :create, kill: { killerID: @kill.killerID, lat: @kill.lat, lng: @kill.lng, timestamp: @kill.timestamp, victimID: @kill.victimID }
+      post :create, kill: {  }
     end
 
     assert_redirected_to kill_path(assigns(:kill))
@@ -35,7 +35,7 @@ class KillsControllerTest < ActionController::TestCase
   end
 
   test "should update kill" do
-    put :update, id: @kill, kill: { killerID: @kill.killerID, lat: @kill.lat, lng: @kill.lng, timestamp: @kill.timestamp, victimID: @kill.victimID }
+    put :update, id: @kill, kill: {  }
     assert_redirected_to kill_path(assigns(:kill))
   end
 

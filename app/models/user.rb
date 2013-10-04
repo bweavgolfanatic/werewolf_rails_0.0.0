@@ -8,9 +8,12 @@ class User < ActiveRecord::Base
   validates_confirmation_of :password
   validates :password, :presence => true, :on => :create
   validates :email, :presence => true
+  validates :total_score, :presence => true
+  validates :high_score, :presence => true
+
   validates_uniqueness_of :email
 
-  has_one :player
+
 
   def self.authenticate(email, password)
     user = find_by_email(email)

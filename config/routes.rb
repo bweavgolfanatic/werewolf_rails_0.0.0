@@ -5,6 +5,10 @@ Werewolf::Application.routes.draw do
   get "log_out" => "sessions#destroy", :as => "log_out"
   get "log_in" => "sessions#new", :as => "log_in"
   get "sign_up" => "users#new", :as => "sign_up"
+  get "get_possible_kills" => "players#get_possible_kills", :as => "get_possible_kills"
+  get "kill_player/:nickname" => "players#kill_player", :as => "kill_player"
+  get "delete_all_players" => "players#delete_all", :as => "delete_all_players"
+
 
   resources :users
   resources :sessions

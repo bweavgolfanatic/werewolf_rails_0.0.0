@@ -14,39 +14,39 @@
 ActiveRecord::Schema.define(:version => 20130925054711) do
 
   create_table "games", :force => true do |t|
-    t.string   "createdDate"
-    t.integer  "dayNightFreq"
-    t.string   "day_state"
+    t.integer  "dayNightFreq", :null => false
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end
 
   create_table "kills", :force => true do |t|
-    t.string   "killerID"
-    t.string   "victimID"
-    t.string   "timestamp"
-    t.float    "lat"
-    t.float    "lng"
+    t.string   "killerID",   :null => false
+    t.string   "victimID",   :null => false
+    t.float    "lat",        :null => false
+    t.float    "lng",        :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
   create_table "players", :force => true do |t|
-    t.integer  "user_id"
+    t.string   "nickname"
+    t.integer  "user_id",    :null => false
     t.string   "alignment"
-    t.boolean  "isDead"
-    t.float    "lat"
-    t.float    "lng"
+    t.string   "isDead",     :null => false
+    t.float    "lat"   
+    t.float    "lng" 
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
-  create_table "users", :force => true do |t|
-    t.string   "email"
-    t.string   "password_hash"
-    t.string   "password_salt"
-    t.integer  "total_score"
-    t.integer  "high_score"
+
+
+  create_table "users",   :force => true do |t|
+    t.string   "email",         :null => false
+    t.string   "password_hash", :null => false
+    t.string   "password_salt", :null => false
+    t.integer  "total_score",   :null => false
+    t.integer  "high_score",    :null => false
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
   end

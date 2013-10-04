@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  skip_before_filter :signed_in_user, only: [:new,:create]
   # GET /users
   # GET /users.json
   def index
@@ -41,6 +42,8 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(params[:user])
+    @user.high_score = 0
+    @user.total_score = 0
 
     respond_to do |format|
       if @user.save
