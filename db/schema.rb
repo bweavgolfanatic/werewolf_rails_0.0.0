@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(:version => 20131007125513) do
     t.float    "lat"
     t.float    "lng"
     t.integer  "score"
+    t.integer  "votes_for"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
