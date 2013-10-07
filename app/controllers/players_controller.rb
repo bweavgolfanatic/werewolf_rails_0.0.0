@@ -151,13 +151,13 @@ class PlayersController < ApplicationController
         poss_votes = Hash.new
         Player.all.each do |player|
           if player.isDead == "false"
-            poss_kills[player.nickname] = player.user_id
+            poss_votes[player.nickname] = player.user_id
           end
         end
       end
     end
     respond_to do |format|
-      format.json { render json: poss_kills}
+      format.json { render json: poss_votes}
     end
   end
 
