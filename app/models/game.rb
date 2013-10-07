@@ -4,7 +4,7 @@ class Game < ActiveRecord::Base
   require 'rufus/scheduler'
 
 
-  attr_accessible  :dayNightFreq
+  attr_accessible  :dayNightFreq, :game_state
   validates :dayNightFreq, presence: true
 
 

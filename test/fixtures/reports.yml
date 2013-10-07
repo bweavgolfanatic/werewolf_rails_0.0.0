@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  high_score: 1
+  game_ID: 1
+  winners: MyString
+  most_kills: MyString
+
+two:
+  high_score: 1
+  game_ID: 1
+  winners: MyString
+  most_kills: MyString

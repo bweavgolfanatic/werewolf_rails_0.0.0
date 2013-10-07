@@ -1,4 +1,7 @@
 Werewolf::Application.routes.draw do
+  resources :reports
+
+
   root :to => "users#new"
 
 

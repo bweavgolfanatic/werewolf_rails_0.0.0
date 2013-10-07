@@ -11,10 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130925054711) do
+ActiveRecord::Schema.define(:version => 20131007125513) do
 
   create_table "games", :force => true do |t|
     t.integer  "dayNightFreq", :null => false
+    t.string   "game_state",   :null => false
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end
@@ -33,15 +34,23 @@ ActiveRecord::Schema.define(:version => 20130925054711) do
     t.integer  "user_id",    :null => false
     t.string   "alignment"
     t.string   "isDead",     :null => false
-    t.float    "lat"   
-    t.float    "lng" 
+    t.float    "lat"
+    t.float    "lng"
+    t.integer  "score"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
+  create_table "reports", :force => true do |t|
+    t.integer  "high_score"
+    t.integer  "game_ID"
+    t.string   "winners"
+    t.string   "most_kills"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
-
-  create_table "users",   :force => true do |t|
+  create_table "users", :force => true do |t|
     t.string   "email",         :null => false
     t.string   "password_hash", :null => false
     t.string   "password_salt", :null => false
