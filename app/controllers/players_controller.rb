@@ -109,6 +109,7 @@ class PlayersController < ApplicationController
         @victim.isDead = "true"
         @victim.save
         current_user.total_score += 100
+        @player.score += 100
         @new_kill = Kill.new(:killerID => @player.user_id, :victimID => @victim.user_id, :lat => @victim.lat, :lng => @victim.lng)
 
         respond_to do |format|
@@ -130,6 +131,16 @@ class PlayersController < ApplicationController
 
   def delete_all_players
     Player.delete_all
+  end
+
+  def vote_for_player
+    @player = Player.find_by_user_id(current_user.id)
+    if @player.isDead == "false"
+      if @voted.isDead == "false"
+        @voted = Player.find_by_nickname(params[:nickname])
+        @voted.votes_for += 1
+        @voted.save
+    end
   end
 
 

@@ -14,6 +14,8 @@ class Kill < ActiveRecord::Base
     @wolves = Player.find(:all, :conditions => ['alignment = ?', 'werewolf'])
     @townies = Player.find(:all, :conditions => ['alignment = ?', 'townsperson'])
       if (@wolves.length > @townies.length) or (@wolves.length == 0)
+        @cur_game = Game.last
+        @cur_game.game_state = "ended"
         puts "create record, give points, end game, delete players"
       end
   end

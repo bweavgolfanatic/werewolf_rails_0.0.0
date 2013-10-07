@@ -33,10 +33,14 @@ class Game < ActiveRecord::Base
       end
       @scheduler = Rufus::Scheduler.start_new
       @scheduler.every(Rufus.to_time_string (@cur_game.dayNightFreq*60))do
-        if (Time.now + (@cur_game.dayNightFreq / 3.0)) % (@cur_game.dayNightFreq *2) > @cur_game.dayNightFreq
-          poll_votes
+        if @cur_game.game_state != "ended"
+          if (Time.now + (@cur_game.dayNightFreq / 3.0)) % (@cur_game.dayNightFreq *2) > @cur_game.dayNightFreq
+            poll_votes
+          else
+            report_kills
+          end
         else
-          report_kills
+          @scheduler.shutdown
         end
       end
 

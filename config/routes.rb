@@ -11,6 +11,7 @@ Werewolf::Application.routes.draw do
   get "get_possible_kills" => "players#get_possible_kills", :as => "get_possible_kills"
   get "kill_player/:nickname" => "players#kill_player", :as => "kill_player"
   get "delete_all_players" => "players#delete_all", :as => "delete_all_players"
+  get "vote_for_player/:nickname" => "players#vote_for_player", :as => "vote_for_player"
 
 
   resources :users
