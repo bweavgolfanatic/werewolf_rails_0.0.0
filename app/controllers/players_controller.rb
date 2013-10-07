@@ -140,6 +140,24 @@ class PlayersController < ApplicationController
         @voted = Player.find_by_nickname(params[:nickname])
         @voted.votes_for += 1
         @voted.save
+      end
+    end
+  end
+
+  def get_votables
+    @player = Player.find_by_user_id(current_user.id)
+    if @player.isDead == "false"
+      if @player.alignment == "townsperson"
+        poss_votes = Hash.new
+        Player.all.each do |player|
+          if player.isDead == "false"
+            poss_kills[player.nickname] = player.user_id
+          end
+        end
+      end
+    end
+    respond_to do |format|
+      format.json { render json: poss_kills}
     end
   end
 
