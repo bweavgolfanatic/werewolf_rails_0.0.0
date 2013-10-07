@@ -157,7 +157,7 @@ class PlayersController < ApplicationController
       end
     end
     respond_to do |format|
-      format.json { render json: poss_votes}
+      format.json {render json: poss_votes}
     end
   end
 

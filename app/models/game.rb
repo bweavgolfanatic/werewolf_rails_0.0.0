@@ -32,13 +32,9 @@ class Game < ActiveRecord::Base
         i+=1
       end
       @scheduler = Rufus::Scheduler.start_new
-      @scheduler.every(Rufus.to_time_string (@cur_game.dayNightFreq*60))do
+      @scheduler.every(Rufus.to_time_string (@cur_game.dayNightFreq*120))do
         if @cur_game.game_state != "ended"
-          if (Time.now + (@cur_game.dayNightFreq / 3.0)) % (@cur_game.dayNightFreq *2) > @cur_game.dayNightFreq
-            poll_votes
-          else
-            report_kills
-          end
+          poll_votes
         else
           @scheduler.shutdown
         end
@@ -60,11 +56,15 @@ class Game < ActiveRecord::Base
     end
 
     def poll_votes
-      puts "poll votes here"
+      @high_votes = Player.first.votes_for
+      Player.each do |player|
+        if player.votes_for > @high_votes
+          
+        end
+
+      end
+      
     end
 
-    def report_kills
-      puts "report kills here"
-    end
 
   end

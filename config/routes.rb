@@ -13,6 +13,7 @@ Werewolf::Application.routes.draw do
   get "delete_all_players" => "players#delete_all", :as => "delete_all_players"
   get "vote_for_player/:nickname" => "players#vote_for_player", :as => "vote_for_player"
   get "get_votables" => "players#get_votables", :as => "get_votables"
+  get "restart_game" => "game#restart_game", :as => "restart_game"
 
 
   resources :users

@@ -82,4 +82,13 @@ class GamesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def restart_game
+    @curgame = Game.last
+    @dayNightFreq = @curgame.dayNightFreq
+    @curgame.game_state = "ended"
+    @curgame.save
+    @newGame = Game.create(:dayNightFreq => @dayNightFreq)
+
+  end
 end
