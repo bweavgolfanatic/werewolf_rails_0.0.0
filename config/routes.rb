@@ -14,6 +14,7 @@ Werewolf::Application.routes.draw do
   get "get_votables" => "players#get_votables", :as => "get_votables"
   get "restart_game" => "game#restart_game", :as => "restart_game"
   get "report_position/:lat/:lng" => "player#report_position", :as => "report_position"
+  get "scoreboard" => "users#leaderboard", :as => "leaderboard"
 
 
   resources :users
