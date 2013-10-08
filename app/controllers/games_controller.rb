@@ -91,4 +91,8 @@ class GamesController < ApplicationController
     @newGame = Game.create(:dayNightFreq => @dayNightFreq)
 
   end
+
+  def start_game
+    Game.create(:dayNightFreq => params[:dayNightFreq])
+  end
 end
