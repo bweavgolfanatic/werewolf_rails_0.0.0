@@ -56,12 +56,13 @@ class Game < ActiveRecord::Base
     end
 
     def poll_votes
-      @high_votes = Player.first.votes_for
+      @high_votes = Player.first
       Player.each do |player|
-        if player.votes_for > @high_votes
-          
+        if player.votes_for > @high_votes.votes_for
+          @high_votes = player
         end
-
+      @high_votes.isDead == "true"
+      @high_votes.save
       end
       
     end
