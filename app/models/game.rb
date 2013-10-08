@@ -63,8 +63,11 @@ class Game < ActiveRecord::Base
         end
       @high_votes.isDead == "true"
       @high_votes.save
+      end
       check_game
-
+      Player.each do |player|
+        player.votes_for = 0
+        player.save
       end
       
     end
