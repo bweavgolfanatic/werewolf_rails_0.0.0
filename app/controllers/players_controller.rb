@@ -129,8 +129,11 @@ class PlayersController < ApplicationController
     end
   end
 
-  def delete_all_players
-    Player.delete_all
+  def report_position
+    @player = Player.find_by_user_id(current_user.id)
+    @player.lat = params[:lat]
+    @player.lng = params[:lng]
+    @player.save
   end
 
   def vote_for_player
