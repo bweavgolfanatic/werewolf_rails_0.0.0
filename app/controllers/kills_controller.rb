@@ -1,25 +1,25 @@
 class KillsController < ApplicationController
   # GET /kills
   # GET /kills.json
-  def index
-    @kills = Kill.all
+#  def index
+#    @kills = Kill.all
+#
+#    respond_to do |format|
+#      format.html # index.html.erb
+#      format.json { render json: @kills }
+#    end
+#  end
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @kills }
-    end
-  end
-
-  # GET /kills/1
-  # GET /kills/1.json
-  def show
-    @kill = Kill.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @kill }
-    end
-  end
+#  # GET /kills/1
+#  # GET /kills/1.json
+#  def show
+#    @kill = Kill.find(params[:id])
+#
+#    respond_to do |format|
+#      format.html # show.html.erb
+#      format.json { render json: @kill }
+#    end
+#  end
 
   # GET /kills/new
   # GET /kills/new.json
@@ -32,10 +32,10 @@ class KillsController < ApplicationController
     end
   end
 
-  # GET /kills/1/edit
-  def edit
-    @kill = Kill.find(params[:id])
-  end
+#  # GET /kills/1/edit
+#  def edit
+#    @kill = Kill.find(params[:id])
+#  end
 
   # POST /kills
   # POST /kills.json
@@ -53,31 +53,31 @@ class KillsController < ApplicationController
     end
   end
 
-  # PUT /kills/1
-  # PUT /kills/1.json
-  def update
-    @kill = Kill.find(params[:id])
+#  # PUT /kills/1
+#  # PUT /kills/1.json
+#  def update
+#    @kill = Kill.find(params[:id])
+#
+#    respond_to do |format|
+#      if @kill.update_attributes(params[:kill])
+#        format.html { redirect_to @kill, notice: 'Kill was successfully updated.' }
+#        format.json { head :no_content }
+#      else
+#        format.html { render action: "edit" }
+#        format.json { render json: @kill.errors, status: :unprocessable_entity }
+#      end
+#    end
+#  end
 
-    respond_to do |format|
-      if @kill.update_attributes(params[:kill])
-        format.html { redirect_to @kill, notice: 'Kill was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @kill.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /kills/1
-  # DELETE /kills/1.json
-  def destroy
-    @kill = Kill.find(params[:id])
-    @kill.destroy
-
-    respond_to do |format|
-      format.html { redirect_to kills_url }
-      format.json { head :no_content }
-    end
-  end
+#  # DELETE /kills/1
+#  # DELETE /kills/1.json
+#  def destroy
+#    @kill = Kill.find(params[:id])
+#    @kill.destroy
+#
+#    respond_to do |format|
+#      format.html { redirect_to kills_url }
+#      format.json { head :no_content }
+#    end
+#  end
 end

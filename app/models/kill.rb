@@ -10,13 +10,14 @@ class Kill < ActiveRecord::Base
 
 
 
-  def check_game
-    @wolves = Player.find(:all, :conditions => ['alignment = ?', 'werewolf'])
-    @townies = Player.find(:all, :conditions => ['alignment = ?', 'townsperson'])
-      if (@wolves.length > @townies.length) or (@wolves.length == 0)
-        @cur_game = Game.last
-        @cur_game.game_state = "ended"
-        puts "create record, give points, end game, delete players"
-      end
-  end
+    def check_game
+      @wolves = Player.where(:alignment => "werewolf",:isDead => "false")
+      @townies = Player.where(:alignment => "townsperson", :isDead => "false")
+       if (@wolves.length > @townies.length) or (@wolves.length == 0)
+         @cur_game = Game.last
+         @cur_game.game_state = "ended"
+         @cur_game.save
+         puts "create record, give points, end game, delete players, delete game" #TODO
+       end
+    end
 end

@@ -55,21 +55,21 @@ class GamesController < ApplicationController
     end
   end
 
-  # PUT /games/1
-  # PUT /games/1.json
-  def update
-    @game = Game.find(params[:id])
-
-    respond_to do |format|
-      if @game.update_attributes(params[:game])
-        format.html { redirect_to @game, notice: 'Game was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @game.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+#  # PUT /games/1
+#  # PUT /games/1.json
+#  def update
+#    @game = Game.find(params[:id])
+#
+#    respond_to do |format|
+#      if @game.update_attributes(params[:game])
+#        format.html { redirect_to @game, notice: 'Game was successfully updated.' }
+#        format.json { head :no_content }
+#      else
+#        format.html { render action: "edit" }
+#        format.json { render json: @game.errors, status: :unprocessable_entity }
+#      end
+#    end
+#  end
 
   # DELETE /games/1
   # DELETE /games/1.json
@@ -88,11 +88,11 @@ class GamesController < ApplicationController
     @dayNightFreq = @curgame.dayNightFreq
     @curgame.game_state = "ended"
     @curgame.save
-    @newGame = Game.create(:dayNightFreq => @dayNightFreq)
+    @newGame = Game.create(:dayNightFreq => @dayNightFreq, :game_state => "started")
 
   end
 
   def start_game
-    Game.create(:dayNightFreq => params[:dayNightFreq])
+    Game.create(:dayNightFreq => params[:dayNightFreq], :game_state => "started")
   end
 end
