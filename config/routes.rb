@@ -1,10 +1,13 @@
 Werewolf::Application.routes.draw do
-  resources :reports
+
 
 
   root :to => "users#new"
 
 
+  
+  get "games" => "games#index"
+  get "games/:id" => "games#show"
   get "log_out" => "sessions#destroy", :as => "log_out"
   get "log_in" => "sessions#new", :as => "log_in"
   get "sign_up" => "users#new", :as => "sign_up"
@@ -14,15 +17,11 @@ Werewolf::Application.routes.draw do
   get "get_votables" => "players#get_votables", :as => "get_votables"
   get "restart_game" => "game#restart_game", :as => "restart_game"
   get "report_position/:lat/:lng" => "player#report_position", :as => "report_position"
-  get "scoreboard" => "users#leaderboard", :as => "leaderboard"
+  get "leaderboard" => "users#leaderboard", :as => "leaderboard"
   get "start_game/:dayNightFreq" => "games#start_game", :as => "start_game"
 
 
-  resources :users
-  resources :sessions
-  resources :players
-  resources :games
-  resources :kills
+
 
 
   # The priority is based upon order of creation:

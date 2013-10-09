@@ -93,6 +93,7 @@ class UsersController < ApplicationController
     score_hash.values.sort
     respond_to do |format|
       format.json {render json: score_hash}
+      format.html # leaderboard.html.erb
     end
 
   end
