@@ -40,19 +40,19 @@ class PlayersController < ApplicationController
 
   # POST /players
   # POST /players.json
-  def create
-    @player = Player.new(params[:player])
-
-    respond_to do |format|
-      if @player.save
-        format.html { redirect_to @player, notice: 'Player was successfully created.' }
-        format.json { render json: @player, status: :created, location: @player }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @player.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+#  def create
+#    @player = Player.new(params[:player])
+#
+#    respond_to do |format|
+#      if @player.save
+#        format.html { redirect_to @player, notice: 'Player was successfully created.' }
+#        format.json { render json: @player, status: :created, location: @player }
+#      else
+#        format.html { render action: "new" }
+#        format.json { render json: @player.errors, status: :unprocessable_entity }
+#      end
+#    end
+#  end
 
 #  # PUT /players/1
 #  # PUT /players/1.json
@@ -106,7 +106,7 @@ class PlayersController < ApplicationController
     @player = Player.find_by_user_id( current_user.id)
     @victim = Player.find_by_nickname(params[:nickname])
     if @player.alignment == "werewolf" and (((Time.now - Game.last.created_at) % (2*Game.last.dayNightFreq)) > Game.last.dayNightFreq)
-      if ((@victim.lat - @player.lat).abs + (@victim.lng - @player.lng).abs < Game.last.kill_radius) and (@victim.alignment == "townsperson") and (@victim.id != @player.id) and (@player.isDead == "false") and (@victim.isDead == "false") #i have no idea how big distances are this will need to be adjusted
+      if ((@victim.lat - @player.lat).abs + (@victim.lng - @player.lng).abs < Game.last.kill_radius) and (@victim.alignment == "townsperson") and (@victim.id != @player.id) and (@player.isDead == "false") and (@victim.isDead == "false") 
         @victim.isDead = "true"
         @victim.save
         @player.score += 100

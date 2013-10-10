@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(:version => 20131007125513) do
   create_table "players", :force => true do |t|
     t.string   "nickname"
     t.string   "vote_cast"
+    t.integer  "game_ID"
     t.integer  "user_id",    :null => false
     t.string   "alignment"
     t.string   "isDead",     :null => false
@@ -45,10 +46,9 @@ ActiveRecord::Schema.define(:version => 20131007125513) do
   end
 
   create_table "reports", :force => true do |t|
-    t.integer  "high_score"
+    t.string  "high_score"
     t.integer  "game_ID"
     t.string   "winners"
-    t.string   "most_kills"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

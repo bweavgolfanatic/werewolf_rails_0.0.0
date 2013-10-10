@@ -13,11 +13,47 @@ class Kill < ActiveRecord::Base
     def check_game
       @wolves = Player.where(:alignment => "werewolf",:isDead => "false")
       @townies = Player.where(:alignment => "townsperson", :isDead => "false")
+      #puts @wolves
+      #puts @townies
        if (@wolves.length > @townies.length) or (@wolves.length == 0)
-         @cur_game = Game.last
+         @cur_game = Game.find(Player.last.game_ID)
          @cur_game.game_state = "ended"
          @cur_game.save
-         puts "create record, give points, end game, delete players, delete game" #TODO
-       end
+
+         @new_report = Report.new
+         if @wolves.length > @townies.length
+           @new_report.winners = "Wolves"
+           Player.each do |player|
+             if player.alignment == "werewolf" and player.isDead == "false"
+               player.score += 500
+               player.save
+             end
+           end
+         else
+           @new_report.winners = "Townspeople"
+           Player.each do |player|
+             if player.alignment == "townsperson" and player.isDead == "false"
+               player.score += 500
+               player.save
+             end
+           end
+         end
+         @new_report.game_ID = @cur_game.id
+         @high_score = Player.first
+         Player.each do |player|
+          if player.score > @high_score.score
+            @high_score = player
+          end
+         end
+         @new_report.high_score = @high_score.nickname + " : " + @high_score.score.to_s
+         @new_report.save
+
+        Player.each do |player|
+          User.find(player.user_id).score += player.score
+          User.save
+        end
+
+        Player.delete_all
+    end
     end
 end

@@ -23,35 +23,35 @@ class KillsController < ApplicationController
 
   # GET /kills/new
   # GET /kills/new.json
-  def new
-    @kill = Kill.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @kill }
-    end
-  end
+#  def new
+#    @kill = Kill.new
+#
+#    respond_to do |format|
+#      format.html # new.html.erb
+#      format.json { render json: @kill }
+#    end
+#  end
 
 #  # GET /kills/1/edit
 #  def edit
 #    @kill = Kill.find(params[:id])
 #  end
 
-  # POST /kills
-  # POST /kills.json
-  def create
-    @kill = Kill.new(params[:kill])
-
-    respond_to do |format|
-      if @kill.save
-        format.html { redirect_to @kill, notice: 'Kill was successfully created.' }
-        format.json { render json: @kill, status: :created, location: @kill }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @kill.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+#  # POST /kills
+#  # POST /kills.json
+#  def create
+#    @kill = Kill.new(params[:kill])
+#
+#    respond_to do |format|
+#      if @kill.save
+#        format.html { redirect_to @kill, notice: 'Kill was successfully created.' }
+#        format.json { render json: @kill, status: :created, location: @kill }
+#      else
+#        format.html { render action: "new" }
+#        format.json { render json: @kill.errors, status: :unprocessable_entity }
+#      end
+#    end
+#  end
 
 #  # PUT /kills/1
 #  # PUT /kills/1.json

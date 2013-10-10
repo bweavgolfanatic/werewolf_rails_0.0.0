@@ -33,10 +33,10 @@ class GamesController < ApplicationController
     end
   end
 
-  # GET /games/1/edit
-  def edit
-    @game = Game.find(params[:id])
-  end
+#  # GET /games/1/edit
+#  def edit
+#    @game = Game.find(params[:id])
+#  end
 
   # POST /games
   # POST /games.json
@@ -77,6 +77,7 @@ class GamesController < ApplicationController
     @game = Game.find(params[:id])
     @game.destroy
 
+
     respond_to do |format|
       format.html { redirect_to games_url }
       format.json { head :no_content }
@@ -89,10 +90,11 @@ class GamesController < ApplicationController
     @curgame.game_state = "ended"
     @curgame.save
     @newGame = Game.create(:dayNightFreq => @dayNightFreq, :game_state => "started")
+    
 
   end
 
   def start_game
-    Game.create(:dayNightFreq => params[:dayNightFreq], :game_state => "started")
+    Game.create(:dayNightFreq => params[:dayNightFreq], :game_state => "started", :kill_radius => params[:kill_radius])
   end
 end
