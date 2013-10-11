@@ -99,6 +99,15 @@ class GamesController < ApplicationController
   end
 
   def start_game
-    Game.create(:dayNightFreq => params[:dayNightFreq], :game_state => "started", :kill_radius => params[:kill_radius])
+    @new_game = Game.new(:dayNightFreq => params[:dayNightFreq], :game_state => "started", :kill_radius => params[:kill_radius])
+    if @new_game.save
+      respond_to do |format|
+        format.json {render json: "game started"}
+      end
+    else
+      respond_to do |format|
+        format.json {render json: "error--game not started"}
+      end
+    end
   end
 end

@@ -50,7 +50,8 @@ class Game < ActiveRecord::Base
           if Game.find(game_id).game_state != "ended"
             poll_votes(game_id)
           else
-            @scheduler2.shutdown
+            @scheduler2.stop
+            puts "stopped scheduler"
           end
 
         end
@@ -66,7 +67,7 @@ class Game < ActiveRecord::Base
       end
     end
 
-    def poll_votes(game_id) #TODO add points for surviving rounds
+    def poll_votes(game_id) 
       puts "***************************"
       puts "POLLING VOTES"
       puts Time.now
@@ -135,7 +136,7 @@ class Game < ActiveRecord::Base
           if player.score > User.find(player.user_id).high_score
             User.find(player.user_id).high_score = player.score
           end
-          User.save
+          User.find(player.user_id).save
         end
 
         Player.delete_all

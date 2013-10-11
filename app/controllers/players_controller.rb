@@ -167,6 +167,18 @@ class PlayersController < ApplicationController
     end
   end
 
+  def players_alive
+    alive = Hash.new
+    Player.all.each do |player|
+      if player.isDead == "false"
+        alive[player.nickname] = player.user_id
+      end
+    end
+    respond_to do |format|
+      format.json {render json: alive}
+    end
+  end
+
   def get_votables
     poss_votes = Hash.new
     puts current_user.id
