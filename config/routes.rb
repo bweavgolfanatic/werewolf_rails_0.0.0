@@ -18,6 +18,7 @@ Werewolf::Application.routes.draw do
   get "report_position/:lat/:lng" => "players#report_position", :as => "report_position"
   get "leaderboard" => "users#index", :as => "leaderboard"
   get "start_game/:dayNightFreq/:kill_radius" => "games#start_game", :as => "start_game"
+  get "daily_report" => "kills#daily_report", :as => "daily_report"
 
   resources :users, :sessions, :games, :players, :reports #TODO GET RID OF UNNEEDED CONTROLLER ACTIONS
 

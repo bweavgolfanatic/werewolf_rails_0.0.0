@@ -3,7 +3,7 @@ class PlayersController < ApplicationController
   # GET /players.json
  
   def index
-    http_basic_authenticate_with :name => "admin", :password => "password"
+    
     @players = Player.all
 
     respond_to do |format|

@@ -31,24 +31,24 @@ ActiveRecord::Schema.define(:version => 20131007125513) do
   end
 
   create_table "players", :force => true do |t|
-    t.string   "nickname"
-    t.string   "vote_cast"
-    t.integer  "game_ID"
+    t.string   "nickname",   :null => false
+    t.string   "vote_cast",  :null => false
+    t.integer  "game_ID",    :null => false
     t.integer  "user_id",    :null => false
-    t.string   "alignment"
+    t.string   "alignment",  :null => false
     t.string   "isDead",     :null => false
-    t.float    "lat"
-    t.float    "lng"
-    t.integer  "score"
-    t.integer  "votes_for"
+    t.float    "lat",        :null => false
+    t.float    "lng",        :null => false
+    t.integer  "score",      :null => false
+    t.integer  "votes_for",  :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
   create_table "reports", :force => true do |t|
-    t.string  "high_score"
-    t.integer  "game_ID"
-    t.string   "winners"
+    t.string  "high_score",  :null => false
+    t.integer  "game_ID",    :null => false
+    t.string   "winners",    :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
