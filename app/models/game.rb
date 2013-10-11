@@ -81,6 +81,9 @@ class Game < ActiveRecord::Base
       end
       
       Player.all.each do |player|
+        if player.isDead == "false"
+          player.score += 50
+        end
         player.votes_for = 0
         player.vote_cast = "false"
         player.save
