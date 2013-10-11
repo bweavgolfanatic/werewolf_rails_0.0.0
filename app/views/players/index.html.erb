@@ -8,6 +8,9 @@
     <th>Lat</th>
     <th>Lng</th>
     <th>Nickname</th>
+    <th>Game ID</th>
+    <th>User ID</th>
+    <th>score</th>
     <th></th>
     <th></th>
     <th></th>
@@ -21,6 +24,9 @@
     <td><%= player.lat %></td>
     <td><%= player.lng %></td>
     <td><%= player.nickname %></td>
+    <td><%= player.game_ID %></td>
+    <td><%= player.user_id %></td>
+    <td><%= player.score %></td>
     <td><%= link_to 'Show', player %></td>
     <td><%= link_to 'Edit', edit_player_path(player) %></td>
     <td><%= link_to 'Destroy', player, method: :delete, data: { confirm: 'Are you sure?' } %></td>

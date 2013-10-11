@@ -23,7 +23,7 @@ class Kill < ActiveRecord::Base
          @new_report = Report.new
          if @wolves.length > @townies.length
            @new_report.winners = "Wolves"
-           Player.each do |player|
+           Player.all.each do |player|
              if player.alignment == "werewolf" and player.isDead == "false"
                player.score += 500
                player.save
@@ -31,7 +31,7 @@ class Kill < ActiveRecord::Base
            end
          else
            @new_report.winners = "Townspeople"
-           Player.each do |player|
+           Player.all.each do |player|
              if player.alignment == "townsperson" and player.isDead == "false"
                player.score += 500
                player.save
@@ -40,7 +40,7 @@ class Kill < ActiveRecord::Base
          end
          @new_report.game_ID = @cur_game.id
          @high_score = Player.first
-         Player.each do |player|
+         Player.all.each do |player|
           if player.score > @high_score.score
             @high_score = player
           end
@@ -48,8 +48,11 @@ class Kill < ActiveRecord::Base
          @new_report.high_score = @high_score.nickname + " : " + @high_score.score.to_s
          @new_report.save
 
-        Player.each do |player|
-          User.find(player.user_id).score += player.score
+        Player.all.each do |player|
+          User.find(player.user_id).total_score += player.score
+          if player.score > User.find(player.user_id).high_score
+            User.find(player.user_id).high_score = player.score
+          end
           User.save
         end
 

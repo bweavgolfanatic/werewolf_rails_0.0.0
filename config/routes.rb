@@ -6,8 +6,7 @@ Werewolf::Application.routes.draw do
 
 
   
-  get "games" => "games#index"
-  get "games/:id" => "games#show"
+
   get "log_out" => "sessions#destroy", :as => "log_out"
   get "log_in" => "sessions#new", :as => "log_in"
   get "sign_up" => "users#new", :as => "sign_up"
@@ -15,12 +14,12 @@ Werewolf::Application.routes.draw do
   get "kill_player/:nickname" => "players#kill_player", :as => "kill_player"
   get "vote_for_player/:nickname" => "players#vote_for_player", :as => "vote_for_player"
   get "get_votables" => "players#get_votables", :as => "get_votables"
-  get "restart_game" => "game#restart_game", :as => "restart_game"
-  get "report_position/:lat/:lng" => "player#report_position", :as => "report_position"
+  get "restart_game" => "games#restart_game", :as => "restart_game"
+  get "report_position/:lat/:lng" => "players#report_position", :as => "report_position"
   get "leaderboard" => "users#index", :as => "leaderboard"
   get "start_game/:dayNightFreq/:kill_radius" => "games#start_game", :as => "start_game"
 
-  resources :users, :sessions #TODO GET RID OF UNNEEDED CONTROLLER ACTIONS
+  resources :users, :sessions, :games, :players, :reports #TODO GET RID OF UNNEEDED CONTROLLER ACTIONS
 
 
 

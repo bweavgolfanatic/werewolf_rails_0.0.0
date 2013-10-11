@@ -85,12 +85,16 @@ class GamesController < ApplicationController
   end
 
   def restart_game
-    @curgame = Game.last
+    @curgame = Game.find(Player.first.game_ID)
     @dayNightFreq = @curgame.dayNightFreq
+    @kill_radius = @curgame.kill_radius
     @curgame.game_state = "ended"
     @curgame.save
-    @newGame = Game.create(:dayNightFreq => @dayNightFreq, :game_state => "started")
-    
+    @newGame = Game.create(:kill_radius => @kill_radius, :dayNightFreq => @dayNightFreq, :game_state => "started")
+    respond_to do |format|
+      format.html { redirect_to games_url }
+      format.json { render json: "game restarted" }
+    end
 
   end
 
