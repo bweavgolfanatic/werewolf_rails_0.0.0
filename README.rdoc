@@ -46,3 +46,6 @@ Game reports available to see past game winners and high scores
 User leaderboard available
 User registration and log in available through web form
 
+Test scripts can be found in /test_requests_scripts and will be added to over the weekend. Other thigns that will be added are 
+listed as Issues in github.
+
