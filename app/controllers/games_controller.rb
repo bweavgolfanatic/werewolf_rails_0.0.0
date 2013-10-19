@@ -88,9 +88,10 @@ class GamesController < ApplicationController
     @curgame = Game.find(Player.first.game_ID)
     @dayNightFreq = @curgame.dayNightFreq
     @kill_radius = @curgame.kill_radius
+    @scent_radius = @curgame.scent_radius
     @curgame.game_state = "ended"
     @curgame.save
-    @newGame = Game.create(:kill_radius => @kill_radius, :dayNightFreq => @dayNightFreq, :game_state => "started")
+    @newGame = Game.create(:kill_radius => @kill_radius, :dayNightFreq => @dayNightFreq, :game_state => "started", :scent_radius => @scent_radius)
     respond_to do |format|
       format.html { redirect_to games_url }
       format.json { render json: "game restarted" }
@@ -99,7 +100,7 @@ class GamesController < ApplicationController
   end
 
   def start_game
-    @new_game = Game.new(:dayNightFreq => params[:dayNightFreq], :game_state => "started", :kill_radius => params[:kill_radius])
+    @new_game = Game.new(:scent_radius => params[:scent_radius], :dayNightFreq => params[:dayNightFreq], :game_state => "started", :kill_radius => params[:kill_radius])
     if @new_game.save
       respond_to do |format|
         format.json {render json: "game started"}

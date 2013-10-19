@@ -4,10 +4,11 @@ class Game < ActiveRecord::Base
   require 'rufus/scheduler'
 
 
-  attr_accessible  :dayNightFreq, :game_state, :kill_radius
+  attr_accessible  :dayNightFreq, :game_state, :kill_radius, :scent_radius
   validates :dayNightFreq, presence: true
   validates :game_state, presence: true
   validates :kill_radius, presence: true
+  validates :scent_radius, presence: true
 
 
 
@@ -85,6 +86,7 @@ class Game < ActiveRecord::Base
         if player.isDead == "false"
           player.score += 50
         end
+        player.kill_made = "false"
         player.votes_for = 0
         player.vote_cast = "false"
         player.save

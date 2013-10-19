@@ -1,5 +1,5 @@
 class Player < ActiveRecord::Base
-  attr_accessible :isDead, :lat, :lng, :alignment, :user_id, :nickname, :game_ID, :score, :votes_for, :vote_cast
+  attr_accessible :isDead, :lat, :lng, :alignment, :user_id, :nickname, :game_ID, :score, :votes_for, :vote_cast, :kill_made
 
 
   validates :isDead, :presence => true
@@ -12,5 +12,6 @@ class Player < ActiveRecord::Base
   validates :score, :presence => true
   validates :votes_for, :presence => true
   validates :vote_cast, :presence => true
+  validates :kill_made, :presence => true
 
 end

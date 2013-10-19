@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(:version => 20131007125513) do
     t.integer  "dayNightFreq", :null => false
     t.string   "game_state",   :null => false
     t.float    "kill_radius",  :null => false
+    t.float    "scent_radius", :null => false
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end
@@ -33,6 +34,7 @@ ActiveRecord::Schema.define(:version => 20131007125513) do
   create_table "players", :force => true do |t|
     t.string   "nickname",   :null => false
     t.string   "vote_cast",  :null => false
+    t.string   "kill_made",  :null => false
     t.integer  "game_ID",    :null => false
     t.integer  "user_id",    :null => false
     t.string   "alignment",  :null => false
