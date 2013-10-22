@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(:version => 20131007125513) do
     t.string   "password_salt", :null => false
     t.integer  "total_score",   :null => false
     t.integer  "high_score",    :null => false
+    t.integer  "level",         :null => false
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
   end

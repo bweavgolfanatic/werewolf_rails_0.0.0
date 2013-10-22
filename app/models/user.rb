@@ -1,9 +1,10 @@
 class User < ActiveRecord::Base
   require 'bcrypt'
-  attr_accessible :email, :password, :password_confirmation, :total_score, :high_score
+  attr_accessible :email, :password, :password_confirmation, :total_score, :high_score, :level
 
   attr_accessor :password
-  before_save :encrypt_password
+  before_save :encrypt_password, :check_level
+  after_save :check_level
 
   validates_confirmation_of :password
   validates :password, :presence => true, :on => :create
@@ -13,6 +14,10 @@ class User < ActiveRecord::Base
 
   validates_uniqueness_of :email
 
+
+  def check_level
+    self.level = Math.sqrt(self.total_score).to_i / 100
+  end
 
 
   def self.authenticate(email, password)
