@@ -34,7 +34,7 @@ class Game < ActiveRecord::Base
         @cur_player.save
         i+=1
       end
-      @scheduler = Rufus::Scheduler.new
+      @scheduler = Rufus::Scheduler.start_new
       @scheduler.in (Rufus.to_time_string (@cur_game.dayNightFreq*60)) do
         main_timer_1(@cur_game.id)
       end
@@ -46,7 +46,7 @@ class Game < ActiveRecord::Base
 
     def main_timer_1(game_id)
       if Game.find(game_id).game_state != "ended"
-        @scheduler2 = Rufus::Scheduler.new
+        @scheduler2 = Rufus::Scheduler.start_new
         @scheduler2.every (Rufus.to_time_string (@cur_game.dayNightFreq*120)) do
           if Game.find(game_id).game_state != "ended"
             poll_votes(game_id)
