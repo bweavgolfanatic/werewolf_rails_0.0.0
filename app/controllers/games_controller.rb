@@ -94,7 +94,7 @@ class GamesController < ApplicationController
     @newGame = Game.create(:kill_radius => @kill_radius, :dayNightFreq => @dayNightFreq, :game_state => "started", :scent_radius => @scent_radius)
     respond_to do |format|
       format.html { redirect_to games_url }
-      format.json { render json: "game restarted" }
+      format.json { render json: "{'message':'game restarted'}"}
     end
 
   end
@@ -103,11 +103,11 @@ class GamesController < ApplicationController
     @new_game = Game.new(:scent_radius => params[:scent_radius], :dayNightFreq => params[:dayNightFreq], :game_state => "started", :kill_radius => params[:kill_radius])
     if @new_game.save
       respond_to do |format|
-        format.json {render json: "game started"}
+        format.json {render json: "{'message':'game started'}"}
       end
     else
       respond_to do |format|
-        format.json {render json: "error--game not started"}
+        format.json {render json: "{'message':'error--game not started'}"}
       end
     end
   end

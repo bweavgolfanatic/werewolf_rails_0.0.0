@@ -8,11 +8,11 @@ class SessionsController < ApplicationController
     if user
       session[:user_id] = user.id
       respond_to do |format|
-        format.json { render json: "login successful"}
+        format.json { render json: "{'message':'login successful'}"}
       end
     else
       respond_to do |format|
-        format.json { render json: "login unsuccessful"}
+        format.json { render json: "{'message':'login unsuccessful'}"}
       end
     end
   end
@@ -21,7 +21,7 @@ class SessionsController < ApplicationController
   def destroy
     session[:user_id] = nil
     respond_to do |format|
-        format.json { render json: "logged out"}
+        format.json { render json: "{'message':'logged out'}"}
       end
   end
 

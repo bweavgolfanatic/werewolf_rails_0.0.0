@@ -116,17 +116,17 @@ class PlayersController < ApplicationController
         @new_kill = Kill.new(:killerID => @player.user_id, :victimID => @victim.user_id, :lat => @victim.lat, :lng => @victim.lng)
         @new_kill.save
         respond_to do |format|
-          format.json { render json: "kill successful"}
+          format.json { render json: "{'message':'kill successful'}"}
         end
         
       else
         respond_to do |format|
-          format.json { render json: "kill unsuccessful"}
+          format.json { render json: "{'message':'kill unsuccessful'}"}
         end
       end
     else
       respond_to do |format|
-        format.json { render json: "kill unsuccessful"}
+        format.json { render json: "{'message':'kill unsuccessful'}"}
       end
 
     end
@@ -167,16 +167,16 @@ class PlayersController < ApplicationController
         end
         @player.save
         respond_to do |format|
-          format.json { render json: "vote successful"}
+          format.json { render json: "{'message':'vote successful'}"}
         end
       else
         respond_to do |format|
-          format.json { render json: "vote unsuccessful"}
+          format.json { render json: "{'message':'vote unsuccessful'}"}
         end
       end
     else
       respond_to do |format|
-        format.json { render json: "vote unsuccessful"}
+        format.json { render json: "{'message':'vote unsuccessful'}"}
       end
     end
   end
