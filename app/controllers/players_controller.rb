@@ -87,7 +87,7 @@ class PlayersController < ApplicationController
   def get_possible_kills
     @player = Player.find_by_user_id(current_user.id)
     poss_kills = Hash.new
-    if (@player.made_kill == "false") and (@player.alignment == "werewolf") and (@player.isDead == "false") and (((Time.now - Game.find(@player.game_ID).created_at) % (120*Game.find(@player.game_ID).dayNightFreq)) > (Game.find(@player.game_ID).dayNightFreq*60))
+    if (@player.kill_made == "false") and (@player.alignment == "werewolf") and (@player.isDead == "false") and (((Time.now - Game.find(@player.game_ID).created_at) % (120*Game.find(@player.game_ID).dayNightFreq)) > (Game.find(@player.game_ID).dayNightFreq*60))
       Player.all.each do |player|
         if (player.user_id != @player.user_id) and (player.alignment == "townsperson") and (player.isDead == "false")
           if (player.lat - @player.lat).abs + (player.lng - @player.lng).abs < Game.find(@player.game_ID).kill_radius
@@ -106,7 +106,7 @@ class PlayersController < ApplicationController
     #puts params[:nickname]
     @player = Player.find_by_user_id( current_user.id)
     @victim = Player.find_by_nickname(params[:nickname])
-    if (@player.made_kill == "false") and (@player.alignment == "werewolf") and (((Time.now - Game.find(@player.game_ID).created_at) % (120*Game.find(@player.game_ID).dayNightFreq)) > (Game.find(@player.game_ID).dayNightFreq*60))
+    if (@player.kill_made == "false") and (@player.alignment == "werewolf") and (((Time.now - Game.find(@player.game_ID).created_at) % (120*Game.find(@player.game_ID).dayNightFreq)) > (Game.find(@player.game_ID).dayNightFreq*60))
       if ((@victim.lat - @player.lat).abs + (@victim.lng - @player.lng).abs < Game.find(@player.game_ID).kill_radius) and (@victim.alignment == "townsperson") and (@victim.id != @player.id) and (@player.isDead == "false") and (@victim.isDead == "false")
         @victim.isDead = "true"
         @victim.save
