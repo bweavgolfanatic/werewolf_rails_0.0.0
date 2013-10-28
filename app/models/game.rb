@@ -63,7 +63,7 @@ class Game < ActiveRecord::Base
       Player.delete_all
       User.all.each do |user|
         puts "making player"
-        @new_p = Player.new(:vote_cast => "false", :votes_for => 0, :game_ID => game_id, :isDead => "false", :alignment => "townsperson", :user_id => user.id, :score => 0, :lat => rand(10), :lng => rand(10), :nickname => user.email.split('@')[0])
+        @new_p = Player.new(:kill_made => "false",:vote_cast => "false", :votes_for => 0, :game_ID => game_id, :isDead => "false", :alignment => "townsperson", :user_id => user.id, :score => 0, :lat => rand(10), :lng => rand(10), :nickname => user.email.split('@')[0])
         @new_p.save
       end
     end
