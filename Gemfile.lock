@@ -111,7 +111,7 @@ DEPENDENCIES
   jquery-rails
   pg
   rails (= 3.2.13)
-  rufus-scheduler
+  rufus-scheduler (= 2.0.24)
   sass-rails (~> 3.2.3)
   sqlite3
   uglifier (>= 1.0.3)

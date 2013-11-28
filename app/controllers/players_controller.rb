@@ -193,6 +193,20 @@ class PlayersController < ApplicationController
     end
   end
 
+  def types_left
+    types = Hash.new
+    types[townies] = 0
+    types[wolves] = 0
+    Player.all.each do |player|
+      if player.isDead == "false"
+        types[player.alignment] += 1
+      end
+      respond_to do |format|
+        format.json {render json: types}
+      end
+    end
+  end
+
   def get_votables
     poss_votes = Hash.new
     puts current_user.id

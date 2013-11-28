@@ -46,14 +46,16 @@ class UsersController < ApplicationController
     @user.high_score = 0
     @user.total_score = 0
 
-    respond_to do |format|
-      if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
-        format.json { render json: @user, status: :created, location: @user }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+    
+    if @user.save
+        respond_to do |format|
+          format.json { render json: "{'message':'user created'}"}
+        end
+    else
+      respond_to do |format|
+        format.json { render json: "{'message':'ERROR'}"}
       end
+      
     end
   end
 

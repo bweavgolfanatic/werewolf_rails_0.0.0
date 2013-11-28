@@ -20,6 +20,7 @@ Werewolf::Application.routes.draw do
   get "start_game/:dayNightFreq/:kill_radius/:scent_radius" => "games#start_game", :as => "start_game"
   get "daily_report" => "kills#daily_report", :as => "daily_report"
   get "players_alive" => "players#players_alive", :as => "players_alive"
+  get "types_left" => "players#types_left", :as => "types_left"
 
   resources :users, :sessions, :games, :players, :reports #TODO GET RID OF UNNEEDED CONTROLLER ACTIONS
 
