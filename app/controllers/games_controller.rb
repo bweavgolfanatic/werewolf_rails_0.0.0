@@ -99,6 +99,18 @@ class GamesController < ApplicationController
 
   end
 
+  def playing_game
+    if !Game.last.nil? and Game.last.game_state != "ended"
+      respond_to do |format|
+      format.json { render json: "{'message':'game active'}"}
+      end
+    else
+      respond_to do |format|
+      format.json { render json: "{'message':'no game active'}"}
+      end
+    end
+  end
+
   def start_game
     @new_game = Game.new(:scent_radius => params[:scent_radius], :dayNightFreq => params[:dayNightFreq], :game_state => "started", :kill_radius => params[:kill_radius])
     if @new_game.save
