@@ -200,7 +200,8 @@ class PlayersController < ApplicationController
     types['wolves'] = 0
     Player.all.each do |player|
       if player.isDead == "false"
-        types[player.alignment] += 1
+        puts player.alignment
+        types[player.alignment] += types[player.alignment] + 1
       end
     end
     respond_to do |format|
