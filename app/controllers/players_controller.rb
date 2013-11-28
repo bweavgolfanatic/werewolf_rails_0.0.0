@@ -196,8 +196,8 @@ class PlayersController < ApplicationController
 
   def types_left
     types = Hash.new
-    types[townies] = 0
-    types[wolves] = 0
+    types['townies'] = 0
+    types['wolves'] = 0
     Player.all.each do |player|
       if player.isDead == "false"
         types[player.alignment] += 1
