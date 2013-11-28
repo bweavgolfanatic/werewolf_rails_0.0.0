@@ -137,18 +137,16 @@ class PlayersController < ApplicationController
     @player.lat = params[:lat]
     @player.lng = params[:lng]
     @player.save
+    message = Hash.new
     Player.each.all do |player|
       if @player.alignment != player.alighment
         if (player.user_id != @player.user_id) and ((player.lat - @player.lat).abs + (player.lng - @player.lng).abs < Game.find(@player.game_ID).scent_radius)
-          respond_to do |format|
-            format.json { render json: "opponent nearby!"}
-          end
-        else
-          respond_to do |format|
-            format.json { render json: "safe!"}
-          end
+          message['message']='someone nearby'
         end
       end
+    end
+    respond_to do |format|
+      format.json { render json: message}
     end
   end
 
@@ -196,12 +194,12 @@ class PlayersController < ApplicationController
 
   def types_left
     types = Hash.new
-    types['townies'] = 0
-    types['wolves'] = 0
+    types['townsperson'] = 0
+    types['werewolf'] = 0
     Player.all.each do |player|
       if player.isDead == "false"
         puts player.alignment
-        types[player.alignment] += types[player.alignment] + 1
+        types[player.alignment] = types[player.alignment] + 1
       end
     end
     respond_to do |format|

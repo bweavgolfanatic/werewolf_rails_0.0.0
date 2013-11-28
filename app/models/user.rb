@@ -3,8 +3,8 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :total_score, :high_score, :level
 
   attr_accessor :password
-  before_save :encrypt_password, :check_level
-  after_save :check_level
+  before_save :encrypt_password
+
 
   validates_confirmation_of :password
   validates :password, :presence => true, :on => :create
