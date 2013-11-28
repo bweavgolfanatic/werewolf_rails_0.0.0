@@ -193,6 +193,7 @@ class PlayersController < ApplicationController
     end
   end
 
+
   def types_left
     types = Hash.new
     types[townies] = 0
@@ -201,9 +202,9 @@ class PlayersController < ApplicationController
       if player.isDead == "false"
         types[player.alignment] += 1
       end
-      respond_to do |format|
+    end
+    respond_to do |format|
         format.json {render json: types}
-      end
     end
   end
 
