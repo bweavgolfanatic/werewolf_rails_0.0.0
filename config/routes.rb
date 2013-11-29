@@ -22,6 +22,7 @@ Werewolf::Application.routes.draw do
   get "players_alive" => "players#players_alive", :as => "players_alive"
   get "types_left" => "players#types_left", :as => "types_left"
   get "playing_game" => "games#playing_game", :as => "playing_game"
+  get "my_details" => "users#my_details", :as => "my_details"
   
 
   resources :users, :sessions, :games, :players, :reports #TODO GET RID OF UNNEEDED CONTROLLER ACTIONS

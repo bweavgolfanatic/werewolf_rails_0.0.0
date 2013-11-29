@@ -87,6 +87,21 @@ class UsersController < ApplicationController
     end
   end
 
+  def my_details
+    details=Hash.new
+    details['username'] = Player.find_by_user_id(current_user.id).nickname
+    details['alignment'] = Player.find_by_user_id(current_user.id).alignment
+    details['total_score'] = current_user.total_score
+    details['high_score'] = current_user.high_score
+    details['game_score'] = Player.find_by_user_id(current_user.id).score
+    details['alive'] = Player.find_by_user_id(current_user.id).isDead
+    
+    respond_to do |format|
+      format.json { render json: details }
+    end
+
+  end
+
 #  def leaderboard
 #    score_hash = Hash.new
 #    User.all.each do |user|

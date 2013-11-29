@@ -146,7 +146,7 @@ class PlayersController < ApplicationController
       end
     end
     respond_to do |format|
-      format.json { render json: message}
+      format.json {render json: message}
     end
   end
 
