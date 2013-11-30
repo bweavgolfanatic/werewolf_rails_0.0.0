@@ -5,12 +5,15 @@ class PlayersController < ApplicationController
   def index
     
     @players = Player.all
+    puts @players
 
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @players }
     end
   end
+
+  def 
 
 #  # GET /players/1
 #  # GET /players/1.json
@@ -134,8 +137,8 @@ class PlayersController < ApplicationController
 
   def report_position
     @player = Player.find_by_user_id(current_user.id)
-    @player.lat = params["lat"]
-    @player.lng = params["lng"]
+    @player.lat = params[:lat]
+    @player.lng = params[:lng]
     @player.save
     message = Hash.new
     Player.all.each do |player|
@@ -219,7 +222,7 @@ class PlayersController < ApplicationController
         
         Player.all.each do |player|
           if player.isDead == "false"
-                        poss_votes[player.nickname] = player.user_id
+                        poss_votes[player.user_id] = player.nickname
           end
         end
       end

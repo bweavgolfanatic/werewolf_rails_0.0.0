@@ -12,7 +12,7 @@ Werewolf::Application.routes.draw do
   get "sign_up" => "users#new", :as => "sign_up"
   get "get_possible_kills" => "players#get_possible_kills", :as => "get_possible_kills"
   get "kill_player/:nickname" => "players#kill_player", :as => "kill_player"
-  get "vote_for_player/:nickname" => "players#vote_for_player", :as => "vote_for_player"
+  post "vote_for_player" => "players#vote_for_player", :as => "vote_for_player"
   get "get_votables" => "players#get_votables", :as => "get_votables"
   get "restart_game" => "games#restart_game", :as => "restart_game"
   post "report_position/" => "players#report_position", :as => "report_position"
