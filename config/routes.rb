@@ -23,6 +23,7 @@ Werewolf::Application.routes.draw do
   get "types_left" => "players#types_left", :as => "types_left"
   get "playing_game" => "games#playing_game", :as => "playing_game"
   get "my_details" => "users#my_details", :as => "my_details"
+  get "am_i_signed_in" => "sessions#am_i_signed_in", :as => "am_i_signed_in"
 #  get "players_list_vote" => "players#players_list_vote", :as => "players_list_vote"
   
 

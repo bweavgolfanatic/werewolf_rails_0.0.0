@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  skip_before_filter :signed_in_user, only: [:new,:create]
+  skip_before_filter :signed_in_user, only: [:new,:create, :am_i_signed_in]
   def new
   end
 
@@ -14,6 +14,18 @@ class SessionsController < ApplicationController
       respond_to do |format|
         format.json { render json: "{'message':'login unsuccessful'}"}
       end
+    end
+  end
+
+  def am_i_signed_in
+    resp = Hash.new
+    if !current_user.nil?
+      resp["message"] = "signed in"
+    else
+      resp["message"] = "not signed in"
+    end
+    respond_to do |format|
+      format.json{render json: resp}
     end
   end
 
