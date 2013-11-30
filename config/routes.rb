@@ -15,7 +15,7 @@ Werewolf::Application.routes.draw do
   get "vote_for_player/:nickname" => "players#vote_for_player", :as => "vote_for_player"
   get "get_votables" => "players#get_votables", :as => "get_votables"
   get "restart_game" => "games#restart_game", :as => "restart_game"
-  get "report_position/:lat/:lng" => "players#report_position", :as => "report_position"
+  post "report_position/" => "players#report_position", :as => "report_position"
   get "leaderboard" => "users#index", :as => "leaderboard"
   get "start_game/:dayNightFreq/:kill_radius/:scent_radius" => "games#start_game", :as => "start_game"
   get "daily_report" => "kills#daily_report", :as => "daily_report"
@@ -23,6 +23,7 @@ Werewolf::Application.routes.draw do
   get "types_left" => "players#types_left", :as => "types_left"
   get "playing_game" => "games#playing_game", :as => "playing_game"
   get "my_details" => "users#my_details", :as => "my_details"
+#  get "players_list_vote" => "players#players_list_vote", :as => "players_list_vote"
   
 
   resources :users, :sessions, :games, :players, :reports #TODO GET RID OF UNNEEDED CONTROLLER ACTIONS

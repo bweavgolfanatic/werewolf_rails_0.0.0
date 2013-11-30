@@ -134,12 +134,12 @@ class PlayersController < ApplicationController
 
   def report_position
     @player = Player.find_by_user_id(current_user.id)
-    @player.lat = params[:lat]
-    @player.lng = params[:lng]
+    @player.lat = params["lat"]
+    @player.lng = params["lng"]
     @player.save
     message = Hash.new
-    Player.each.all do |player|
-      if @player.alignment != player.alighment
+    Player.all.each do |player|
+      if @player.alignment != player.alignment
         if (player.user_id != @player.user_id) and ((player.lat - @player.lat).abs + (player.lng - @player.lng).abs < Game.find(@player.game_ID).scent_radius)
           message['message']='someone nearby'
         end
@@ -228,6 +228,19 @@ class PlayersController < ApplicationController
       format.json {render json: poss_votes}
     end
   end
+
+
+#  def players_list_vote
+#    players = Hash.new
+#    Player.all.each do |player|
+#      if player.user_id != current_user.id
+#        subplayer = Hash.new
+#        subplayer["nickname"] = player.nickname
+#        subplayer["life"] = player.isDead
+#        players[]
+#      end
+#    end
+#  end
 
 
 
