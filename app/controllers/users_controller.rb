@@ -89,13 +89,43 @@ class UsersController < ApplicationController
 
   def my_details
     details=Hash.new
-    details['username'] = Player.find_by_user_id(current_user.id).nickname
-    details['alignment'] = Player.find_by_user_id(current_user.id).alignment
     details['total_score'] = current_user.total_score
     details['high_score'] = current_user.high_score
-    details['game_score'] = Player.find_by_user_id(current_user.id).score
-    details['alive'] = Player.find_by_user_id(current_user.id).isDead
-    
+    details['username'] = current_user.email.split("@")[0]
+    details['rank']=User.order('total_score').all.index(current_user)
+    if (!Game.last.nil?) and (Game.last.game_state != "ended")
+      details['isgame'] = "playing"
+      @player = Player.find_by_user_id(current_user.id)
+      if (@player.isDead)
+        details['status'] = "You Are Dead"
+      else
+        details['status'] = Player.find_by_user_id(current_user.id).alignment
+      end
+      details['game_score'] = Player.find_by_user_id(current_user.id).score
+      details['alive'] = Player.find_by_user_id(current_user.id).isDead
+      details['werewolf']=0
+      details['townsperson']=0
+      Player.all.each do |player|
+        if player.isDead == "false"
+          details[player.alignment] = details[player.alignment] + 1
+        end
+      end
+      if (((Time.now - Game.find(@player.game_ID).created_at) % (120*Game.find(@player.game_ID).dayNightFreq)) < (Game.find(@player.game_ID).dayNightFreq*60))
+        details['time'] = 'day'
+      else
+        details['time'] = 'night'
+      end
+      details['place']=Player.order('score').all.index(Player.find_by_user_id(current_user.id))
+    else
+      details['isgame']= "no game"
+      details['status']=""
+      details['game_score']=""
+      details['alive']=""
+      details['werewolf']=0
+      details['townsperson']=0
+      details['time']="ended"
+      details['place']=""
+    end
     respond_to do |format|
       format.json { render json: details }
     end

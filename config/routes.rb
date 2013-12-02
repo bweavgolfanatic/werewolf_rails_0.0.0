@@ -24,6 +24,9 @@ Werewolf::Application.routes.draw do
   get "playing_game" => "games#playing_game", :as => "playing_game"
   get "my_details" => "users#my_details", :as => "my_details"
   get "am_i_signed_in" => "sessions#am_i_signed_in", :as => "am_i_signed_in"
+  get "night_or_day" => "games#night_or_day", :as => "night_or_day"
+  get "current_game" => "games#current_game", :as => "current_game"
+  
 #  get "players_list_vote" => "players#players_list_vote", :as => "players_list_vote"
   
 

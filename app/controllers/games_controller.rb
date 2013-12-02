@@ -123,4 +123,34 @@ class GamesController < ApplicationController
       end
     end
   end
+
+  def night_or_day
+    if (((Time.now - Game.find(@player.game_ID).created_at) % (120*Game.find(@player.game_ID).dayNightFreq)) < (Game.find(@player.game_ID).dayNightFreq*60))
+      respond_to do |format|
+        format.json {render json: "{'message':'day'}"}
+      end
+    else
+      respond_to do |format|
+        format.json {render json: "{'message':'night'}"}
+      end
+    end
+  end
+
+  def current_game
+    if !Game.last.nil?
+      if (Game.last.game_state == "started") and (Player.count != 0)
+        respond_to do |format|
+          format.json {render json: "{'message':'game'}"}
+        end
+      else
+        respond_to do |format|
+          format.json {render json: "{'message':'no game'}"}
+        end
+      end
+     else
+        respond_to do |format|
+          format.json {render json: "{'message':'no game'}"}
+        end
+    end
+  end
 end
