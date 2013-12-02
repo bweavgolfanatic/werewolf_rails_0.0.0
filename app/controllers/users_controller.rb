@@ -101,7 +101,7 @@ class UsersController < ApplicationController
       if (@player.isDead == "true")
         details['status'] = "You Are Dead"
       else
-        details['status'] = "You Are A: "+Player.find_by_user_id(current_user.id).alignment
+        details['status'] = "Alive: "+Player.find_by_user_id(current_user.id).alignment.upcase
         if Player.find_by_user_id(current_user.id).alignment == "werewolf"
           details['kill']="yes"
         else
