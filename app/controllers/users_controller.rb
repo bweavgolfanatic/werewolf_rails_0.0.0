@@ -89,6 +89,8 @@ class UsersController < ApplicationController
 
   def my_details
     details=Hash.new
+    details['vote']="no"
+    details['kill']="no"
     details['total_score'] = current_user.total_score
     details['high_score'] = current_user.high_score
     details['username'] = current_user.email.split("@")[0]
@@ -99,7 +101,12 @@ class UsersController < ApplicationController
       if (@player.isDead)
         details['status'] = "You Are Dead"
       else
-        details['status'] = Player.find_by_user_id(current_user.id).alignment
+        details['status'] = "You Are A: "+Player.find_by_user_id(current_user.id).alignment
+        if Player.find_by_user_id(current_user.id).alignment == "werewolf"
+          details['kill']="yes"
+        else
+          details['vote']="yes"
+        end
       end
       details['game_score'] = Player.find_by_user_id(current_user.id).score
       details['alive'] = Player.find_by_user_id(current_user.id).isDead
@@ -118,7 +125,7 @@ class UsersController < ApplicationController
       details['place']=Player.order('score').all.index(Player.find_by_user_id(current_user.id))
     else
       details['isgame']= "no game"
-      details['status']=""
+      details['status']="No Game Playing"
       details['game_score']=""
       details['alive']=""
       details['werewolf']=0
