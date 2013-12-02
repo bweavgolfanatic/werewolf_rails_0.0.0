@@ -98,7 +98,7 @@ class UsersController < ApplicationController
     if (!Game.last.nil?) and (Game.last.game_state != "ended")
       details['isgame'] = "playing"
       @player = Player.find_by_user_id(current_user.id)
-      if (@player.isDead)
+      if (@player.isDead == "true")
         details['status'] = "You Are Dead"
       else
         details['status'] = "You Are A: "+Player.find_by_user_id(current_user.id).alignment
