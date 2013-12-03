@@ -87,23 +87,6 @@ class PlayersController < ApplicationController
 #  end
 
 
-  def get_possible_kills
-    @player = Player.find_by_user_id(current_user.id)
-    poss_kills = Hash.new
-    if (@player.kill_made == "false") and (@player.alignment == "werewolf") and (@player.isDead == "false") and (((Time.now - Game.find(@player.game_ID).created_at) % (120*Game.find(@player.game_ID).dayNightFreq)) > (Game.find(@player.game_ID).dayNightFreq*60))
-      Player.all.each do |player|
-        if (player.user_id != @player.user_id) and (player.alignment == "townsperson") and (player.isDead == "false")
-          if (player.lat - @player.lat).abs + (player.lng - @player.lng).abs < Game.find(@player.game_ID).kill_radius
-            poss_kills[player.nickname] = player.user_id
-          end
-        end
-      end
-    end
-    respond_to do |format|
-      format.json { render json: poss_kills}
-    end
-
-  end
 
   def kill_player
     #puts params[:nickname]
@@ -209,6 +192,32 @@ class PlayersController < ApplicationController
         format.json {render json: types}
     end
   end
+
+  def get_possible_kills
+    poss_kills = Hash.new
+    @players = Player.all
+    @me = Player.find_by_user_id(current_user.id)
+    i = 0
+    if !@me.nil?
+      if (@me.kill_made == "false") and (@me.alignment == "werewolf") and (@me.isDead == "false") and (((Time.now - Game.find(@me.game_ID).created_at) % (120*Game.find(@me.game_ID).dayNightFreq)) > (Game.find(@me.game_ID).dayNightFreq*60))
+        while i < @players.length
+          if (@players[i].user_id != @me.user_id) and (@players[i].alignment == "townsperson") and (@players[i].isDead == "false")
+            if (@players[i].lat - @me.lat).abs + (@players[i].lng - @me.lng).abs < Game.find(@me.game_ID).kill_radius
+              poss_kills[i] = @players[i].nickname
+            end
+          end
+        end
+      end
+    else
+      poss_kills[0]="No Current Game"
+
+    end
+    respond_to do |format|
+        format.json {render json: poss_kills}
+    end
+
+  end
+
 
   def get_votables
     poss_votes = Hash.new
