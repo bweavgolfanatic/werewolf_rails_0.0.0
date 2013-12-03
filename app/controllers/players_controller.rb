@@ -217,7 +217,7 @@ class PlayersController < ApplicationController
     i = 0
     if !@me.nil?
       if (@me.isDead == "false") and (@me.vote_cast == "false") and ((Time.now - Game.find(@me.game_ID).created_at) > Game.find(@me.game_ID).dayNightFreq*60)  and (((Time.now - Game.find(@me.game_ID).created_at) % (120*Game.find(@me.game_ID).dayNightFreq)) < (Game.find(@me.game_ID).dayNightFreq*60))
-        if @player.alignment == "townsperson"
+        if @me.alignment == "townsperson"
           while i < @players.length
             if (@players[i] != @me) and (@players[i].isDead != "true")
               poss_votes[i] = @players[i].nickname
@@ -229,6 +229,7 @@ class PlayersController < ApplicationController
     else
       poss_votes[0] = "No Current Game"
     end
+    puts poss_votes
     respond_to do |format|
       format.json {render json: poss_votes}
     end
