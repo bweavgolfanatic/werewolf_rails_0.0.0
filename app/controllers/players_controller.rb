@@ -163,9 +163,9 @@ class PlayersController < ApplicationController
         @voted.votes_for += 1
         @voted.save
         @player.vote_cast = "true"
-        if @voted.alignment == "werewolf"
-          @player.score+=25
-        end
+#        if @voted.alignment == "werewolf"
+#          @player.score+=25
+#        end
         @player.save
         respond_to do |format|
           format.json { render json: "{'message':'vote successful'}"}
