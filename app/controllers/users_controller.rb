@@ -160,11 +160,19 @@ class UsersController < ApplicationController
   end
     def gscoreboard
     score_hash = Hash.new
-    scors = User.find(:all, :order => 'high_score', :limit => 5)
-    i = 0
-    while i < 5
-      score_hash[i]=scors[i].email.split("@")[0] + ": " + scors[i].high_score.to_s
-      i+=1
+    if (!Player.first.nil?)
+      scors = Player.find(:all, :order => 'score', :limit => 5)
+      i = 0
+      while i < 5
+        score_hash[i]=scors[i].email.split("@")[0] + ": " + scors[i].high_score.to_s
+        i+=1
+      end
+    else
+      score_hash[0] = "no current game"
+      score_hash[1] = "-"
+      score_hash[2] = "-"
+      score_hash[3] = "-"
+      score_hash[4] = "-"
     end
 #    score_hash = Hash.new
 #    User.all.each do |user|
