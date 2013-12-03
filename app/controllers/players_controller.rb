@@ -222,6 +222,7 @@ class PlayersController < ApplicationController
             if (@players[i] != @me) and (@players[i].isDead != "true")
               poss_votes[i] = @players[i].nickname
             end
+            i+=1
           end
         end
       end
