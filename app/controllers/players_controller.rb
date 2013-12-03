@@ -212,25 +212,32 @@ class PlayersController < ApplicationController
 
   def get_votables
     poss_votes = Hash.new
-    puts current_user.id
-    @player = Player.find_by_user_id(current_user.id)
-    puts @player.nickname
-    puts (Time.now - Game.find(@player.game_ID).created_at) % (120*Game.find(@player.game_ID).dayNightFreq)
-
-    if (@player.isDead == "false") and (@player.vote_cast == "false") and ((Time.now - Game.find(@player.game_ID).created_at) > Game.find(@player.game_ID).dayNightFreq*60)  and (((Time.now - Game.find(@player.game_ID).created_at) % (120*Game.find(@player.game_ID).dayNightFreq)) < (Game.find(@player.game_ID).dayNightFreq*60))
-      if @player.alignment == "townsperson"
-        
-        Player.all.each do |player|
-          if player.isDead == "false"
-                        poss_votes[player.user_id] = player.nickname
+    @players = Player.all
+    @me = Player.find_by_user_id(current_user.id)
+    i = 0
+    if !@me.nil?
+      if (@me.isDead == "false") and (@me.vote_cast == "false") and ((Time.now - Game.find(@me.game_ID).created_at) > Game.find(@me.game_ID).dayNightFreq*60)  and (((Time.now - Game.find(@me.game_ID).created_at) % (120*Game.find(@me.game_ID).dayNightFreq)) < (Game.find(@me.game_ID).dayNightFreq*60))
+        if @player.alignment == "townsperson"
+          while i < @players.length
+            if (@players[i] != @me) and (@players[i].isDead != "true")
+              poss_votes[i] = @players[i].nickname
+            end
           end
         end
       end
+    else
+      poss_votes[0] = "No Current Game"
     end
     respond_to do |format|
       format.json {render json: poss_votes}
     end
+
   end
+
+
+
+
+
 
 
 #  def players_list_vote
