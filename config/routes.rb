@@ -16,7 +16,7 @@ Werewolf::Application.routes.draw do
   get "get_votables" => "players#get_votables", :as => "get_votables"
   get "restart_game" => "games#restart_game", :as => "restart_game"
   post "report_position/" => "players#report_position", :as => "report_position"
-  get "leaderboard" => "users#leaderboard", :as => "leaderboard"
+  get "tscoreboard" => "users#tscoreboard", :as => "tscoreboard"
   get "start_game/:dayNightFreq/:kill_radius/:scent_radius" => "games#start_game", :as => "start_game"
   get "daily_report" => "kills#daily_report", :as => "daily_report"
   get "players_alive" => "players#players_alive", :as => "players_alive"

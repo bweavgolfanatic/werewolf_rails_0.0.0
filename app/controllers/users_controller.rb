@@ -139,16 +139,22 @@ class UsersController < ApplicationController
 
   end
 
-  def leaderboard
+  def tscoreboard
     score_hash = Hash.new
-    User.all.each do |user|
-      score_hash[user.email.split("@")[0]] = user.total_score
+    scors = User.find(:all, :order => 'total_score * price', :limit => 5)
+    i = 0
+    while i < 5
+      score_hash[i]=scors[i]
+      i+=1
     end
+#    score_hash = Hash.new
+#    User.all.each do |user|
+#      score_hash[user.email.split("@")[0]] = user.total_score
+#    end
 
-    score_hash.values.sort
+#    score_hash.values.sort
     respond_to do |format|
       format.json {render json: score_hash}
-      format.html # leaderboard.html.erb
     end
 
   end
