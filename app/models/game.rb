@@ -68,19 +68,15 @@ class Game < ActiveRecord::Base
       end
     end
 
-    def poll_votes(game_id) 
+    def poll_votes(game_id)
       puts "***************************"
       puts "POLLING VOTES"
       puts Time.now
       puts "***************************"
-      @high_votes = Player.first
-      Player.all.each do |player|
-        if player.votes_for > @high_votes.votes_for
-          @high_votes = player
-        end
+
+      @high_votes = Player.find(:all, :order => 'votes_for desc', :limit => 1)
       @high_votes.isDead = "true"
       @high_votes.save
-      end
       
       Player.all.each do |player|
         if player.isDead == "false"
