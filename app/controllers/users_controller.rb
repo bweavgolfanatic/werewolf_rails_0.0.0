@@ -164,7 +164,7 @@ class UsersController < ApplicationController
       scors = Player.find(:all, :order => 'score', :limit => 5)
       i = 0
       while i < 5
-        score_hash[i]=scors[i].email.split("@")[0] + ": " + scors[i].high_score.to_s
+        score_hash[i]=scors[i].nickname + ": " + scors[i].score
         i+=1
       end
     else
