@@ -10,6 +10,7 @@ class KillsController < ApplicationController
           if Time.now - @kills[i].created_at < 120*Game.last.dayNightFreq
             kills_hash[i] = Player.find_by_user_id(kill.victimID).nickname + @kills[i].created_at.to_s + ": " + @kills[i].lat.to_s + ",  " + @kills[i].lng.to_s
           end
+          i += 1
         end
       end
     end
