@@ -206,6 +206,7 @@ class PlayersController < ApplicationController
               poss_kills[i] = @players[i].nickname
             end
           end
+          i += 1
         end
       end
     else
