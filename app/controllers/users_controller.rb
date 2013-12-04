@@ -158,28 +158,26 @@ class UsersController < ApplicationController
     end
 
   end
-    def gscoreboard
+
+  def gscoreboard
     score_hash = Hash.new
-    if (!Player.first.nil?)
+    if !Player.first.nil?
       scors = Player.find(:all, :order => 'score', :limit => 5)
+      puts scors
       i = 0
       while i < 5
-        score_hash[i]=scors[i].nickname + ": " + scors[i].score
+        score_hash[i]=scors[i].nickname + ": " + scors[i].score.to_s
         i+=1
       end
     else
+      puts "no game"
       score_hash[0] = "no current game"
       score_hash[1] = "-"
       score_hash[2] = "-"
       score_hash[3] = "-"
       score_hash[4] = "-"
     end
-#    score_hash = Hash.new
-#    User.all.each do |user|
-#      score_hash[user.email.split("@")[0]] = user.total_score
-#    end
 
-#    score_hash.values.sort
     respond_to do |format|
       format.json {render json: score_hash}
     end
