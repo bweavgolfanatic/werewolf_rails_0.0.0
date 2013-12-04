@@ -74,9 +74,20 @@ class Game < ActiveRecord::Base
       puts Time.now
       puts "***************************"
 
-      @high_votes = Player.find(:all,:isDead => 'false', :order => 'votes_for desc', :limit => 1)[0]
-      puts @high_votes[0]
-      puts @high_votes[0].nickname
+      @players = Player.where(:isDead => 'false')
+      @high_votes = @players[0]
+      i = 0
+      while i < @players.length
+        if @players[i].votes_for > @high_votes.votes_for
+          @high_votes = @players[i]
+        end
+        i += 1
+      end
+
+
+
+
+      puts @high_votes.nickname
       @high_votes.isDead = "true"
       @high_votes.save
       
