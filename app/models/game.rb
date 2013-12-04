@@ -88,7 +88,9 @@ class Game < ActiveRecord::Base
 
 
       puts @high_votes.nickname
-      @high_votes.isDead = "true"
+      if @high_votes.votes_for != 0
+        @high_votes.isDead = "true"
+      end
       @high_votes.save
       
       Player.all.each do |player|
