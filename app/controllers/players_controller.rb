@@ -23,7 +23,7 @@ class PlayersController < ApplicationController
         @victim.isDead = "true"
         @victim.save
         @player.score += 100
-        @player.made_kill = "true"
+        @player.kill_made = "true"
         @player.save
         @new_kill = Kill.new(:killerID => @player.user_id, :victimID => @victim.user_id, :lat => @victim.lat, :lng => @victim.lng)
         @new_kill.save
