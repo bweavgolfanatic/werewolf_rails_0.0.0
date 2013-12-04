@@ -7,8 +7,8 @@ class KillsController < ApplicationController
         @kills = Kill.all
         i = 0
         while i < @kills.length
-          if Time.now - kill.created_at < 120*Game.last.dayNightFreq
-            kills_hash[i] = Player.find_by_user_id(kill.victimID).nickname + kill.created_at.to_s + ": " + kill.lat.to_s + ",  " + kill.lng.to_s
+          if Time.now - @kills[i].created_at < 120*Game.last.dayNightFreq
+            kills_hash[i] = Player.find_by_user_id(kill.victimID).nickname + @kills[i].created_at.to_s + ": " + @kills[i].lat.to_s + ",  " + @kills[i].lng.to_s
           end
         end
       end
