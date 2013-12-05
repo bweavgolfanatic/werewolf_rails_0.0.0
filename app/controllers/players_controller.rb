@@ -46,8 +46,8 @@ class PlayersController < ApplicationController
 
   def report_position
     @player = Player.find_by_user_id(current_user.id)
-    @player.lat = params[:lat]
-    @player.lng = params[:lng]
+    @player.lat = params[:lat].to_f
+    @player.lng = params[:lng].to_f
     @player.save
     message = Hash.new
     Player.all.each do |player|
