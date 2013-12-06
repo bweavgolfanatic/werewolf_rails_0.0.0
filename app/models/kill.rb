@@ -25,7 +25,7 @@ class Kill < ActiveRecord::Base
            @new_report.winners = "Wolves"
            Player.all.each do |player|
              if player.alignment == "werewolf" and player.isDead == "false"
-               player.score += 500
+               player.score += 125
                player.save
              end
            end
@@ -33,7 +33,7 @@ class Kill < ActiveRecord::Base
            @new_report.winners = "Townspeople"
            Player.all.each do |player|
              if player.alignment == "townsperson" and player.isDead == "false"
-               player.score += 500
+               player.score += 125
                player.save
              end
            end
