@@ -143,9 +143,14 @@ class UsersController < ApplicationController
   def tscoreboard
     score_hash = Hash.new
     scors = User.find(:all, :order => 'total_score desc', :limit => 5)
+    puts scors
     i = 0
     while i < 5
-      score_hash[i]=scors[i].email.split("@")[0] + ": " +scors[i].total_score.to_s
+      if !scors[i].email.nil?
+        score_hash[i]=scors[i].email.split("@")[0] + ": " +scors[i].total_score.to_s
+      else
+        score_hash[i]=""
+      end
       i+=1
     end
 #    score_hash = Hash.new
@@ -167,7 +172,11 @@ class UsersController < ApplicationController
       puts scors
       i = 0
       while i < 5
-        score_hash[i]=scors[i].email.split("@")[0] + ": " + scors[i].high_score.to_s
+        if !scors[i].email.nil?
+          score_hash[i]=scors[i].email.split("@")[0] + ": " + scors[i].high_score.to_s
+        else
+          score_hash[i]=""
+        end
         i+=1
       end
     else

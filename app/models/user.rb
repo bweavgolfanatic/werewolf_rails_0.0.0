@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   validates :email, :presence => true
   validates :total_score, :presence => true
   validates :high_score, :presence => true
+  validates :level, :presence => true
 
   validates_uniqueness_of :email
 
