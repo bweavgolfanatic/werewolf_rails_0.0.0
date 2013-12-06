@@ -128,7 +128,7 @@ class UsersController < ApplicationController
       details['isgame']= "no game"
       details['status']="Game OVER: "
       if !Report.last.nil?
-        details['status'] += Report.last.winners + "won!"
+        details['status'] += Report.last.winners + " win!"
       end
       details['game_score']=""
       details['alive']=""
