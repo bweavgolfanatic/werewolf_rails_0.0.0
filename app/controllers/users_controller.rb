@@ -126,7 +126,10 @@ class UsersController < ApplicationController
       details['place']=Player.order('score desc').all.index(Player.find_by_user_id(current_user.id)) + 1
     else
       details['isgame']= "no game"
-      details['status']="No Game Playing"
+      details['status']="Game OVER: "
+      if !Report.last.nil?
+        details['status'] += Report.last.winners + "won!"
+      end
       details['game_score']=""
       details['alive']=""
       details['werewolf']=0
