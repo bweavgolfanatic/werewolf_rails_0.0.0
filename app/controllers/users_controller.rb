@@ -144,9 +144,10 @@ class UsersController < ApplicationController
     score_hash = Hash.new
     scors = User.find(:all, :order => 'total_score desc', :limit => 5)
     puts scors
+    puts scors.length
     i = 0
     while i < 5
-      if !scors[i].email.nil?
+      if !scors[i].nil?
         score_hash[i]=scors[i].email.split("@")[0] + ": " +scors[i].total_score.to_s
       else
         score_hash[i]=""
@@ -172,7 +173,7 @@ class UsersController < ApplicationController
       puts scors
       i = 0
       while i < 5
-        if !scors[i].email.nil?
+        if !scors[i].nil?
           score_hash[i]=scors[i].email.split("@")[0] + ": " + scors[i].high_score.to_s
         else
           score_hash[i]=""
