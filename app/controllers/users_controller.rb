@@ -45,6 +45,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     @user.high_score = 0
     @user.total_score = 0
+    @user.level = 0
 
     
     if @user.save

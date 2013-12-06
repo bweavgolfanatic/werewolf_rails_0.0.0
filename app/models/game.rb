@@ -149,6 +149,7 @@ class Game < ActiveRecord::Base
           if player.score > User.find(player.user_id).high_score
             User.find(player.user_id).high_score = player.score
           end
+          User.find(player.user_id).level = User.find(player.user_id).total_score / 500
           User.find(player.user_id).save
         end
 

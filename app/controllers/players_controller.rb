@@ -141,6 +141,7 @@ class PlayersController < ApplicationController
           i += 1
         end
       end
+
     else
       poss_kills[0]="No Current Game"
 
@@ -168,6 +169,8 @@ class PlayersController < ApplicationController
           end
         end
       end
+
+
     else
       poss_votes[0] = "No Current Game"
     end

@@ -15,10 +15,6 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :email
 
 
-  def check_level
-    self.level = Math.sqrt(self.total_score).to_i / 100
-  end
-
 
   def self.authenticate(email, password)
     user = find_by_email(email)
