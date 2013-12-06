@@ -46,20 +46,25 @@ class PlayersController < ApplicationController
 
   def report_position
     @player = Player.find_by_user_id(current_user.id)
-    @player.lat = params[:lat].to_f
-    @player.lng = params[:lng].to_f
-    @player.save
     state = Hash.new
-    state['message']="safe"
-    Player.all.each do |player|
-      if @player.alignment != player.alignment
-        if (player.user_id != @player.user_id) and ((player.lat - @player.lat).abs + (player.lng - @player.lng).abs < Game.find(@player.game_ID).scent_radius)
-          state['message']='someone nearby'
+    if !@player.nil?
+      @player.lat = params[:lat].to_f
+      @player.lng = params[:lng].to_f
+      @player.save     
+      state['message']="safe"
+      Player.all.each do |player|
+        if @player.alignment != player.alignment
+          if (player.user_id != @player.user_id) and ((player.lat - @player.lat).abs + (player.lng - @player.lng).abs < Game.find(@player.game_ID).scent_radius)
+            state['message']='someone nearby'
+          end
         end
       end
+    else
+      state['message']="no game"
+
     end
     respond_to do |format|
-      format.json {render json: state}
+        format.json {render json: state}
     end
   end
 
