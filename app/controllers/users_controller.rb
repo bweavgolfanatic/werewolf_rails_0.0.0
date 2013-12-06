@@ -95,7 +95,7 @@ class UsersController < ApplicationController
     details['total_score'] = current_user.total_score
     details['high_score'] = current_user.high_score
     details['username'] = current_user.email.split("@")[0]
-    details['rank']=User.order('total_score').all.index(current_user)
+    details['rank']=User.order('total_score desc').all.index(current_user)
     if (!Game.last.nil?) and (Game.last.game_state != "ended")
       details['isgame'] = "playing"
       @player = Player.find_by_user_id(current_user.id)
@@ -123,7 +123,7 @@ class UsersController < ApplicationController
       else
         details['time'] = 'night'
       end
-      details['place']=Player.order('score').all.index(Player.find_by_user_id(current_user.id))
+      details['place']=Player.order('score desc').all.index(Player.find_by_user_id(current_user.id))
     else
       details['isgame']= "no game"
       details['status']="No Game Playing"
